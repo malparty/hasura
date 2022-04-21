@@ -1,0 +1,49 @@
+{
+  "resource_version": 9,
+  "metadata": {
+    "version": 3,
+    "sources": [
+      {
+        "name": "react-admin-toolkit",
+        "kind": "postgres",
+        "tables": [
+          {
+            "table": {
+              "schema": "public",
+              "name": "jobs"
+            },
+            "object_relationships": [
+              {
+                "name": "farmer",
+                "using": {
+                  "foreign_key_constraint_on": "farmer_id"
+                }
+              },
+              {
+                "name": "pilot",
+                "using": {
+                  "foreign_key_constraint_on": "pilot_id"
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "users"
+            }
+          }
+        ],
+        "configuration": {
+          "connection_info": {
+            "use_prepared_statements": false,
+            "database_url": {
+              "from_env": "PG_DATABASE_URL"
+            },
+            "isolation_level": "read-committed"
+          }
+        }
+      }
+    ]
+  }
+}
