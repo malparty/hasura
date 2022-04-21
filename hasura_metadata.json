@@ -1,37 +1,55 @@
 {
-  "resource_version": 9,
+  "resource_version": 7,
   "metadata": {
     "version": 3,
     "sources": [
       {
-        "name": "react-admin-toolkit",
+        "name": "main-database",
         "kind": "postgres",
         "tables": [
           {
             "table": {
               "schema": "public",
-              "name": "jobs"
-            },
-            "object_relationships": [
-              {
-                "name": "farmer",
-                "using": {
-                  "foreign_key_constraint_on": "farmer_id"
-                }
-              },
-              {
-                "name": "pilot",
-                "using": {
-                  "foreign_key_constraint_on": "pilot_id"
-                }
-              }
-            ]
+              "name": "orders"
+            }
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "shops"
+            }
           },
           {
             "table": {
               "schema": "public",
               "name": "users"
-            }
+            },
+            "array_relationships": [
+              {
+                "name": "buyer",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "buyer_id",
+                    "table": {
+                      "schema": "public",
+                      "name": "orders"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "vendor",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "vendor_id",
+                    "table": {
+                      "schema": "public",
+                      "name": "orders"
+                    }
+                  }
+                }
+              }
+            ]
           }
         ],
         "configuration": {
